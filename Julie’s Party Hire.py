@@ -14,6 +14,32 @@ def quit():
 def print():
     pass
 
+def quitColour_hover(e):
+    quit['bg']="#555555"
+    quit['fg']="White"
+def printColour_hover(e):
+    print['bg']="#555555"
+    print['fg']="White"
+def delColour_hover(e):
+    delete_one['bg']="#555555"
+    delete_one['fg']="White"
+def dColour_hover(e):
+    delete_several['bg']="#555555"
+    delete_several['fg']="White"
+
+def quitColour_leave(e):
+    quit['bg']="SystemButtonFace"
+    quit['fg']="Black"
+def printColour_leave(e):
+    print['bg']="SystemButtonFace"
+    print['fg']="Black"
+def delColour_leave(e):
+    delete_one['bg']="SystemButtonFace"
+    delete_one['fg']="Black"
+def dColour_leave(e):
+    delete_several['bg']="SystemButtonFace"
+    delete_several['fg']="Black"
+
 
 main_window = Tk()
 main_window.title(" Julia's Party Hire ")
@@ -49,17 +75,33 @@ receipt_number_entry = Entry(main_window, width=47)
 item_hired_entry = Entry(main_window, width=47)
 number_hired_entry = Entry(main_window, width=47)
 
+
+
+#This section of coding is related to BUTTON (hovering and styling)
 #Creating Button
 delete_one = Button(main_window, text='Delete One', font=fontButton, fg="#00030a", width=12, command=delete_one)
 delete_several = Button(main_window, text='Delete More', font=fontButton, fg="#00030a", width=12, command=delete_several)
 quit = Button(main_window, text='Quit', font=fontButton, fg="#00030a", width=7, command=quit)
 print = Button(main_window, text='Print', font=fontButton, fg="#00030a", width=7, command=print)
+#Changing buttons' colour when hovering
+quit.bind("<Enter>", quitColour_hover)
+quit.bind("<Leave>", quitColour_leave)
+print.bind("<Enter>", printColour_hover)
+print.bind("<Leave>", printColour_leave)
+delete_one.bind("<Enter>", delColour_hover)
+delete_one.bind("<Leave>", delColour_leave)
+delete_several.bind("<Enter>", dColour_hover)
+delete_several.bind("<Leave>", dColour_leave)
 
+
+
+
+#This section of coding are related to TREEVIEW WEDGIT
 #Creating a Treeview widget for the information to be print out
 my_tree = ttk.Treeview(main_window)
 '''Define the column of the Treeview.
 In this case I decide to have 5 column one for each Label and another one is for ROW'''
-#Define our column
+#Define the column
 my_tree['columns'] =('Row', 'Customer Name', 'Receipt Number', 'Item Hire', 'Number Hire')
 #Formate Our columns
 my_tree.column('#0', width=0, minwidth=0)
@@ -77,6 +119,8 @@ my_tree.heading('Item Hire', text="Item Hire", anchor=CENTER)
 my_tree.heading('Number Hire', text='Number Hire', anchor=CENTER)
 
 
+
+#This section of coding are related to POSITION of wedgit
 '''I decided to position Label,EntryBox,Button and other widgets different from its
 original line becuase it looks cleaner and more organise.'''
 #Position of Lable
@@ -95,7 +139,7 @@ delete_several.grid(row=11, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
 quit.grid(row=0, column=0, ipady=5, pady=10, padx=50, sticky=E)
 print.grid(row=5, column=3, ipadx=5, ipady=2, pady=10, padx=17, sticky=W)
 #Position of Treeview
-my_tree.grid(row=7, columnspan=2, rowspan=5, padx=25, pady=10, ipady=5, sticky=E)
+my_tree.grid(row=7, columnspan=2, rowspan=5, padx=25, pady=10, ipady=5, sticky=W)
 
 
 main_window.mainloop()
