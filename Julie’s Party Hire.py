@@ -17,7 +17,7 @@ def print():
 
 main_window = Tk()
 main_window.title(" Julia's Party Hire ")
-main_window.geometry('500x500')
+main_window.geometry('800x550')
 main_window.iconbitmap('E:/Document/DGT/Programming/My Assement/logo.jpg')
 
 #Creating a font-style for text in Button
@@ -38,19 +38,19 @@ fontLabel = Font(
     overstrike=0)
 
 #Creating Label 
-customer_name_label = Label(main_window, text="Customer Name", fg='#020c0a', font=fontLabel)
-receipt_number_label = Label(main_window, text="Receipt Number", fg='#020c0a', font=fontLabel)
-item_hired_label = Label(main_window, text="Item Hired", fg='#020c0a', font=fontLabel)
-number_hired_label = Label(main_window, text="Number Hired", fg='#020c0a', font=fontLabel)
+customer_name_label = Label(main_window, text="Customer Name:", fg='#020c0a', font=fontLabel)
+receipt_number_label = Label(main_window, text="Receipt Number:", fg='#020c0a', font=fontLabel)
+item_hired_label = Label(main_window, text="Item Hired:", fg='#020c0a', font=fontLabel)
+number_hired_label = Label(main_window, text="Number Hired:", fg='#020c0a', font=fontLabel)
 
 #Creating Entry Box
-customer_name_entry = Entry(main_window, width=50)
-receipt_number_entry = Entry(main_window, width=50)
-item_hired_entry = Entry(main_window, width=50)
-number_hired_entry = Entry(main_window, width=50)
+customer_name_entry = Entry(main_window, width=47)
+receipt_number_entry = Entry(main_window, width=47)
+item_hired_entry = Entry(main_window, width=47)
+number_hired_entry = Entry(main_window, width=47)
 
 #Creating Button
-delete_one = Button(main_window, text='Delete', font=fontButton, fg="#00030a", width=7, command=delete_one)
+delete_one = Button(main_window, text='Delete One', font=fontButton, fg="#00030a", width=12, command=delete_one)
 delete_several = Button(main_window, text='Delete More', font=fontButton, fg="#00030a", width=12, command=delete_several)
 quit = Button(main_window, text='Quit', font=fontButton, fg="#00030a", width=7, command=quit)
 print = Button(main_window, text='Print', font=fontButton, fg="#00030a", width=7, command=print)
@@ -63,39 +63,39 @@ In this case I decide to have 5 column one for each Label and another one is for
 my_tree['columns'] =('Row', 'Customer Name', 'Receipt Number', 'Item Hire', 'Number Hire')
 #Formate Our columns
 my_tree.column('#0', width=0, minwidth=0)
-my_tree.column('Row', anchor=W, width=90)
-my_tree.column('Customer Name', anchor=W, width=140)
-my_tree.column('Receipt Number', anchor=W, width=140)
-my_tree.column('Item Hire', anchor=W, width=120)
-my_tree.column('Number Hire', anchor=W, width=120)
+my_tree.column('Row', anchor=W, width=60)
+my_tree.column('Customer Name', anchor=CENTER, width=125)
+my_tree.column('Receipt Number', anchor=CENTER, width=105)
+my_tree.column('Item Hire', anchor=CENTER, width=95)
+my_tree.column('Number Hire', anchor=CENTER, width=85)
 #Create Heading
 my_tree.heading('#0', text="", anchor=W)
-my_tree.heading('Row', text="Row", anchor=W)
-my_tree.heading('Customer Name', text="Customer Name", anchor=W)
-my_tree.heading('Receipt Number', text="Receipt Number", anchor=W)
-my_tree.heading('Item Hire', text="Item Hire", anchor=W)
-my_tree.heading('Number Hire', text='Number Hire', anchor=W)
+my_tree.heading('Row', text="Row No.", anchor=W)
+my_tree.heading('Customer Name', text="Customer Name", anchor=CENTER)
+my_tree.heading('Receipt Number', text="Receipt Number", anchor=CENTER)
+my_tree.heading('Item Hire', text="Item Hire", anchor=CENTER)
+my_tree.heading('Number Hire', text='Number Hire', anchor=CENTER)
 
 
-'''I decided to position Label,EntryBox,Button and other widget different from its
+'''I decided to position Label,EntryBox,Button and other widgets different from its
 original line becuase it looks cleaner and more organise.'''
 #Position of Lable
-customer_name_label.grid(row=2, column=0, ipady=7, ipadx=7)
-receipt_number_label.grid(row=3, column=0, ipady=7, ipadx=7)
-item_hired_label.grid(row=4, column=0, ipady=7, ipadx=7)
-number_hired_label.grid(row=5, column=0, ipady=7, ipadx=7)
+customer_name_label.grid(row=2, column=0, ipadx=5, ipady=5, sticky=E)
+receipt_number_label.grid(row=3, column=0, ipadx=5, ipady=5, sticky=E)
+item_hired_label.grid(row=4, column=0, ipadx=5, ipady=5, sticky=E)
+number_hired_label.grid(row=5, column=0, ipadx=5, ipady=5, sticky=E)
 #Position of Entry Box
-customer_name_entry.grid(row=2, column=1, ipady=4, ipadx=4)
-receipt_number_entry.grid(row=3, column=1, ipady=4, ipadx=4)
-item_hired_entry.grid(row=4, column=1, ipady=4, ipadx=4)
-number_hired_entry.grid(row=5, column=1, ipady=4, ipadx=4)
+customer_name_entry.grid(row=2, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
+receipt_number_entry.grid(row=3, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
+item_hired_entry.grid(row=4, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
+number_hired_entry.grid(row=5, column=1, ipady=4, ipadx=4, sticky=W)
 #Position of Button
-delete_one.grid(row=0, column=3, ipadx=5, ipady=5, padx=30)
-delete_several.grid(row=0, column=2, ipadx=5, ipady=5, padx=30)
-quit.grid(row=0, column=0, ipadx=5, ipady=5)
-print.grid(row=0, column=1, ipadx=5, ipady=5)
+delete_one.grid(row=10, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
+delete_several.grid(row=11, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
+quit.grid(row=0, column=0, ipady=5, pady=10, padx=50, sticky=E)
+print.grid(row=5, column=3, ipadx=5, ipady=2, pady=10, padx=17, sticky=W)
 #Position of Treeview
-my_tree.grid(row=7, columnspan=3)
+my_tree.grid(row=7, columnspan=2, rowspan=5, padx=25, pady=10, ipady=5, sticky=E)
 
 
 main_window.mainloop()
