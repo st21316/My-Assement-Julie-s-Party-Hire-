@@ -3,19 +3,31 @@ from tkinter import ttk
 from tkinter.font import Font
 
 def delete_one():
-    pass
+    x = my_tree.selection()[0]
+    my_tree.delete(x)
+count=0
 
 def delete_several():
-    pass
+    x = my_tree.selection()[0]
+    for record in x:
+        my_tree.delete(record)
 
 def quit():
     main_window.destroy()
 
 def print():
-    pass
+    global count
+    my_tree.insert(parent='', index='end', iid=count, text='',
+               values=(customer_name_entry.get(), receipt_number_entry.get(),
+                       number_hired_entry.get(), item_hired_entry.get()))
+    count +=1
+    customer_name_entry.delete(0,END)
+    receipt_number_entry.delete(0,END)
+    number_hired_entry.delete(0,END)
+    item_hired_entry.delete(0,END)
 
 
-#Changing btn colour when hover and when leave
+ #Changing btn colour when hover and when leave
 def quitColour_hover(e):
     quit['bg']="#555555"
     quit['fg']="White"
@@ -67,13 +79,13 @@ fontLabel = Font(
 
 #Creating Label 
 customer_name_label = Label(main_window, text="Customer Name:", fg='#020c0a', font=fontLabel)
-c_error = Label(main_window, text="", fg='#020c0a')
+c_error = Label(main_window, text="")
 receipt_number_label = Label(main_window, text="Receipt Number:", fg='#020c0a', font=fontLabel)
-r_error = Label(main_window, text="", fg='#020c0a')
+r_error = Label(main_window, text="")
 item_hired_label = Label(main_window, text="Item Hired:", fg='#020c0a', font=fontLabel)
-i_error = Label(main_window, text="", fg='#020c0a')
+i_error = Label(main_window, text="")
 number_hired_label = Label(main_window, text="Number Hired:", fg='#020c0a', font=fontLabel)
-n_error = Label(main_window, text="", fg='#020c0a')
+n_error = Label(main_window, text="")
 
 #Creating Entry Box
 customer_name_entry = Entry(main_window, width=47)
@@ -131,25 +143,25 @@ my_tree.heading('Number Hire', text='Number Hire', anchor=CENTER)
 original line becuase it looks cleaner and more organise.'''
 #Position of Lable
 customer_name_label.grid(row=2, column=0, ipadx=5, ipady=5, sticky=E)
-receipt_number_label.grid(row=4, column=0, ipadx=5, ipady=5, sticky=E)
-item_hired_label.grid(row=6, column=0, ipadx=5, ipady=5, sticky=E)
-number_hired_label.grid(row=8, column=0, ipadx=5, ipady=5, sticky=E)
-c_error.grid(row=3, column=0, ipadx=5, ipady=5, sticky=E)
-r_error.grid(row=5, column=0, ipadx=5, ipady=5, sticky=E)
-i_error.grid(row=7, column=0, ipadx=5, ipady=5, sticky=E)
-n_error.grid(row=9, column=0, ipadx=5, ipady=5, sticky=E)
+receipt_number_label.grid(row=3, column=0, ipadx=5, ipady=5, sticky=E)
+item_hired_label.grid(row=5, column=0, ipadx=5, ipady=5, sticky=E)
+number_hired_label.grid(row=4, column=0, ipadx=5, ipady=5, sticky=E)
+c_error.grid(row=2, column=3, ipadx=2)
+r_error.grid(row=3, column=3, ipadx=2)
+i_error.grid(row=5, column=3, ipadx=2)
+n_error.grid(row=4, column=3, ipadx=2)
 #Position of Entry Box
 customer_name_entry.grid(row=2, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
-receipt_number_entry.grid(row=4, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
-item_hired_entry.grid(row=6, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
-number_hired_entry.grid(row=8, column=1, ipady=4, ipadx=4, sticky=W)
+receipt_number_entry.grid(row=3, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
+item_hired_entry.grid(row=5, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
+number_hired_entry.grid(row=4, column=1, ipady=4, ipadx=4, sticky=W)
 #Position of Button
-delete_one.grid(row=13, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
-delete_several.grid(row=14, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
+delete_one.grid(row=10, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
+delete_several.grid(row=11, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
 quit.grid(row=0, column=0, ipady=5, pady=10, padx=50, sticky=E)
-print.grid(row=8, column=3, ipadx=5, ipady=2, pady=10, padx=17, sticky=W)
+print.grid(row=5, column=3, ipadx=5, ipady=2, pady=10, padx=17, sticky=W)
 #Position of Treeview
-my_tree.grid(row=10, columnspan=2, rowspan=5, padx=25, pady=10, ipady=5, sticky=W)
+my_tree.grid(row=7, columnspan=2, rowspan=5, padx=25, pady=10, ipady=5, sticky=W)
 
 
 main_window.mainloop()
