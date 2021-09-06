@@ -16,7 +16,6 @@ def quit():
     main_window.destroy()
 
 def print():
-    global row
     global count
     my_tree.insert(parent='', index='end', iid=count, text='',
                values=(customer_name_entry.get(), receipt_number_entry.get(),
@@ -29,8 +28,19 @@ def print():
     item_hired_entry.delete(0,END)
 
 def validate():
-    pass
-        
+    input_check = 0
+    if len(customer_name_entry.get()) == 0:
+        c_error['text']="Required"
+        input_check = 1
+    if len(receipt_number_entry.get()) == 0:
+        r_error['text']="Required.   Type in number only"
+        input_check = 1
+    if len(number_hired_entry.get()) == 0:
+        n_error['text']="Required.   Type in number between 1-500 only"
+        input_check = 1
+    if len(item_hired_entry.get()) == 0:
+        i_error['text']="Required"
+        input_check = 1
 
 
  #Changing btn colour when hover and when leave
@@ -91,13 +101,13 @@ fontLabel = Font(
 
 #Creating Label 
 customer_name_label = Label(main_window, text="Customer Name:", fg='#020c0a', font=fontLabel)
-c_error = Label(main_window, text="")
+c_error = Label(main_window, text="", fg='red')
 receipt_number_label = Label(main_window, text="Receipt Number:", fg='#020c0a', font=fontLabel)
-r_error = Label(main_window, text="")
+r_error = Label(main_window, text="", fg='red')
 item_hired_label = Label(main_window, text="Item Hired:", fg='#020c0a', font=fontLabel)
-i_error = Label(main_window, text="")
+i_error = Label(main_window, text="", fg='red')
 number_hired_label = Label(main_window, text="Number Hired:", fg='#020c0a', font=fontLabel)
-n_error = Label(main_window, text="")
+n_error = Label(main_window, text="", fg='red')
 
 #Creating Entry Box
 customer_name_entry = Entry(main_window, width=47)
@@ -160,10 +170,10 @@ customer_name_label.grid(row=2, column=0, ipadx=5, ipady=5, sticky=E)
 receipt_number_label.grid(row=3, column=0, ipadx=5, ipady=5, sticky=E)
 item_hired_label.grid(row=5, column=0, ipadx=5, ipady=5, sticky=E)
 number_hired_label.grid(row=4, column=0, ipadx=5, ipady=5, sticky=E)
-c_error.grid(row=2, column=3, ipadx=2)
-r_error.grid(row=3, column=3, ipadx=2)
-i_error.grid(row=5, column=3, ipadx=2)
-n_error.grid(row=4, column=3, ipadx=2)
+c_error.grid(row=2, column=3, ipadx=5, sticky=W)
+r_error.grid(row=3, column=3, ipadx=5, sticky=W)
+i_error.grid(row=5, column=3, ipadx=5, sticky=W)
+n_error.grid(row=4, column=3, ipadx=5, sticky=W)
 #Position of Entry Box
 customer_name_entry.grid(row=2, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
 receipt_number_entry.grid(row=3, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
@@ -173,8 +183,8 @@ number_hired_entry.grid(row=4, column=1, ipady=4, ipadx=4, sticky=W)
 delete_one.grid(row=10, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
 delete_several.grid(row=11, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
 quit.grid(row=0, column=0, ipady=5, pady=10, padx=50, sticky=E)
-print.grid(row=5, column=4, ipadx=5, ipady=2, pady=10, padx=17, sticky=W)
-validate.grid(row=5, column=3, ipadx=5, ipady=2, pady=10, padx=17, sticky=W)
+print.grid(row=9, column=3, ipadx=5, ipady=2, pady=10, padx=10, sticky=W)
+validate.grid(row=8, column=3, ipadx=5, ipady=2, pady=10, padx=10, sticky=W)
 #Position of Treeview
 my_tree.grid(row=7, columnspan=2, rowspan=5, padx=25, pady=10, ipady=5, sticky=W)
 
