@@ -6,7 +6,7 @@ def delete_one():
     x = my_tree.selection()[0]
     my_tree.delete(x)
 count=0
-
+row=0
 def delete_several():
     x = my_tree.selection()[0]
     for record in x:
@@ -16,15 +16,21 @@ def quit():
     main_window.destroy()
 
 def print():
+    global row
     global count
     my_tree.insert(parent='', index='end', iid=count, text='',
                values=(customer_name_entry.get(), receipt_number_entry.get(),
                        number_hired_entry.get(), item_hired_entry.get()))
     count +=1
+    row +=1
     customer_name_entry.delete(0,END)
     receipt_number_entry.delete(0,END)
     number_hired_entry.delete(0,END)
     item_hired_entry.delete(0,END)
+
+def validate():
+    pass
+        
 
 
  #Changing btn colour when hover and when leave
@@ -40,7 +46,10 @@ def delColour_hover(e):
 def dColour_hover(e):
     delete_several['bg']="#555555"
     delete_several['fg']="White"
-
+def validateColour_hover(e):
+    validate['bg']="#555555"
+    validate['fg']="White"
+    
 def quitColour_leave(e):
     quit['bg']="SystemButtonFace"
     quit['fg']="Black"
@@ -53,6 +62,9 @@ def delColour_leave(e):
 def dColour_leave(e):
     delete_several['bg']="SystemButtonFace"
     delete_several['fg']="Black"
+def validateColour_leave(e):
+    validate['bg']="SystemButtonFace"
+    validate['fg']="Black"
 
 
 main_window = Tk()
@@ -101,6 +113,7 @@ delete_one = Button(main_window, text='Delete One', font=fontButton, fg="#00030a
 delete_several = Button(main_window, text='Delete More', font=fontButton, fg="#00030a", width=12, command=delete_several)
 quit = Button(main_window, text='Quit', font=fontButton, fg="#00030a", width=7, command=quit)
 print = Button(main_window, text='Print', font=fontButton, fg="#00030a", width=7, command=print)
+validate = Button(main_window, text='Validate Input', font=fontButton, fg="#00030a", width=12, command=validate)
 #Changing buttons' colour when hovering
 quit.bind("<Enter>", quitColour_hover)
 quit.bind("<Leave>", quitColour_leave)
@@ -110,7 +123,8 @@ delete_one.bind("<Enter>", delColour_hover)
 delete_one.bind("<Leave>", delColour_leave)
 delete_several.bind("<Enter>", dColour_hover)
 delete_several.bind("<Leave>", dColour_leave)
-
+validate.bind("<Enter>", validateColour_hover)
+validate.bind("<Leave>", validateColour_leave)
 
 
 
@@ -159,7 +173,8 @@ number_hired_entry.grid(row=4, column=1, ipady=4, ipadx=4, sticky=W)
 delete_one.grid(row=10, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
 delete_several.grid(row=11, column=3, ipadx=5, ipady=3, padx=10, sticky=W)
 quit.grid(row=0, column=0, ipady=5, pady=10, padx=50, sticky=E)
-print.grid(row=5, column=3, ipadx=5, ipady=2, pady=10, padx=17, sticky=W)
+print.grid(row=5, column=4, ipadx=5, ipady=2, pady=10, padx=17, sticky=W)
+validate.grid(row=5, column=3, ipadx=5, ipady=2, pady=10, padx=17, sticky=W)
 #Position of Treeview
 my_tree.grid(row=7, columnspan=2, rowspan=5, padx=25, pady=10, ipady=5, sticky=W)
 
