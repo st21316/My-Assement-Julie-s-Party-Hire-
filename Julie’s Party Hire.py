@@ -70,6 +70,7 @@ def print():
     r_error['text']=""
     n_error['text']=""
     i_error['text']=""
+    I_correct['text']=""
 
 #Function for when deleting one item
 def delete_one():
@@ -122,6 +123,7 @@ def validateColour_leave(e):
 main_window = Tk()
 main_window.title(" Julia's Party Hire ")
 main_window.geometry('800x550')
+main_window.config(bg="#D9DADC")
 main_window.iconbitmap('E:/Document/DGT/Programming/My Assement/logo.jpg')
 
 #Creating a font-style for text in Button
@@ -142,15 +144,15 @@ fontLabel = Font(
     overstrike=0)
 
 #Creating Label 
-customer_name_label = Label(main_window, text="Customer Name:", fg='#020c0a', font=fontLabel)
-c_error = Label(main_window, text="", fg='red')
-receipt_number_label = Label(main_window, text="Receipt Number:", fg='#020c0a', font=fontLabel)
-r_error = Label(main_window, text="", fg='red')
-item_hired_label = Label(main_window, text="Item Hired:", fg='#020c0a', font=fontLabel)
-i_error = Label(main_window, text="", fg='red')
-I_correct = Label(main_window, text="", fg='green')
-number_hired_label = Label(main_window, text="Number Hired:", fg='#020c0a', font=fontLabel)
-n_error = Label(main_window, text="", fg='red')
+customer_name_label = Label(main_window, text="Customer Name:", bg="#D9DADC", fg='#020c0a', font=fontLabel)
+c_error = Label(main_window, text="", bg="#D9DADC", fg='red')
+receipt_number_label = Label(main_window, text="Receipt Number:", bg="#D9DADC", fg='#020c0a', font=fontLabel)
+r_error = Label(main_window, text="", bg="#D9DADC", fg='red')
+item_hired_label = Label(main_window, text="Item Hired:", bg="#D9DADC", fg='#020c0a', font=fontLabel)
+i_error = Label(main_window, text="", bg="#D9DADC", fg='red')
+I_correct = Label(main_window, text="", bg="#D9DADC", fg='green')
+number_hired_label = Label(main_window, text="Number Hired:", bg="#D9DADC", fg='#020c0a', font=fontLabel)
+n_error = Label(main_window, text="", bg="#D9DADC", fg='red')
 
 #Creating Entry Box
 customer_name_entry = Entry(main_window, width=47)
