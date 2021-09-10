@@ -21,25 +21,21 @@ def validate():
     else:
         i_error['text']=""
         input_check = 1
-    
+
     #Check that receipt number is enter in number, if not set error text
     try:
         int(receipt_number_entry.get())
         r_error.config(text='')
     except ValueError:
-        r_error.config(text="Required. Type in number only.")
-        
-    #Check the number of item hired is between 1 and 500, set error text if condition not meet
-    if (receipt_number_entry.get().isdigit()):
-        if int(receipt_number_entry.get()) < 0 :
-            r_error['text']="Please type in number only."
+        r_error.config(text="Please type in Receipt number.")
 
+            
     #Check that number of item hired is enter in number, if not set error text
     try:
         int(number_hired_entry.get())
         n_error.config(text='')
     except ValueError:
-        n_error.config(text="Required. Type in number between 1-500 only.")     
+        n_error.config(text="Required. Please type in number only.")     
         
     #Check the number of item hired is between 1 and 500, set error text if condition not meet
     if (number_hired_entry.get().isdigit()):
@@ -57,20 +53,24 @@ def quit():
 def print():
     global count
     global name_count
-    my_tree.insert(parent='', index='end', iid=count, text=name_count,
+    global check_input
+    if len(customer_name_entry.get())==0 and len(item_hired_entry.get())==0 and len(receipt_number_entry.get())==0 and len(number_hired_entry.get())==0:
+        P_error['text']="Please Validate your input before click 'Print'"
+    else:
+        my_tree.insert(parent='', index='end', iid=count, text=name_count,
                values=(customer_name_entry.get(), receipt_number_entry.get(),
                        number_hired_entry.get(), item_hired_entry.get()))
-    count +=1
-    name_count +=1
-    customer_name_entry.delete(0,END)
-    receipt_number_entry.delete(0,END)
-    number_hired_entry.delete(0,END)
-    item_hired_entry.delete(0,END)
-    c_error['text']=""
-    r_error['text']=""
-    n_error['text']=""
-    i_error['text']=""
-    I_correct['text']=""
+        count +=1
+        name_count +=1
+        customer_name_entry.delete(0,END)
+        receipt_number_entry.delete(0,END)
+        number_hired_entry.delete(0,END)
+        item_hired_entry.delete(0,END)
+        c_error['text']=""
+        r_error['text']=""
+        n_error['text']=""
+        i_error['text']=""
+        I_correct['text']=""
 
 #Function for when deleting one item
 def delete_one():
@@ -123,8 +123,8 @@ def validateColour_leave(e):
 main_window = Tk()
 main_window.title(" Julia's Party Hire ")
 main_window.geometry('800x550')
-main_window.config(bg="#D9DADC")
-main_window.iconbitmap('E:/Document/DGT/Programming/My Assement/logo.jpg')
+
+
 
 #Creating a font-style for text in Button
 fontButton = Font(
@@ -144,15 +144,16 @@ fontLabel = Font(
     overstrike=0)
 
 #Creating Label 
-customer_name_label = Label(main_window, text="Customer Name:", bg="#D9DADC", fg='#020c0a', font=fontLabel)
-c_error = Label(main_window, text="", bg="#D9DADC", fg='red')
-receipt_number_label = Label(main_window, text="Receipt Number:", bg="#D9DADC", fg='#020c0a', font=fontLabel)
-r_error = Label(main_window, text="", bg="#D9DADC", fg='red')
-item_hired_label = Label(main_window, text="Item Hired:", bg="#D9DADC", fg='#020c0a', font=fontLabel)
-i_error = Label(main_window, text="", bg="#D9DADC", fg='red')
-I_correct = Label(main_window, text="", bg="#D9DADC", fg='green')
-number_hired_label = Label(main_window, text="Number Hired:", bg="#D9DADC", fg='#020c0a', font=fontLabel)
-n_error = Label(main_window, text="", bg="#D9DADC", fg='red')
+customer_name_label = Label(main_window, text="Customer Name:", fg='#020c0a', font=fontLabel)
+c_error = Label(main_window, text="", fg='red')
+receipt_number_label = Label(main_window, text="Receipt Number:", fg='#020c0a', font=fontLabel)
+r_error = Label(main_window, text="", fg='red')
+item_hired_label = Label(main_window, text="Item Hired:", fg='#020c0a', font=fontLabel)
+i_error = Label(main_window, text="", fg='red')
+I_correct = Label(main_window, text="", fg='green')
+P_error = Label(main_window, text="", fg='red')
+number_hired_label = Label(main_window, text="Number Hired:", fg='#020c0a', font=fontLabel)
+n_error = Label(main_window, text="", fg='red')
 
 #Creating Entry Box
 customer_name_entry = Entry(main_window, width=47)
@@ -217,6 +218,7 @@ c_error.grid(row=2, column=3, ipadx=5, sticky=W)
 r_error.grid(row=3, column=3, ipadx=5, sticky=W)
 i_error.grid(row=5, column=3, ipadx=5, sticky=W)
 I_correct.grid(row=7, column=1, ipadx=5, sticky=W)
+P_correct.grid(row=7, column=1, ipadx=5, sticky=W)
 n_error.grid(row=4, column=3, ipadx=5, sticky=W)
 #Position of Entry Box
 customer_name_entry.grid(row=2, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
