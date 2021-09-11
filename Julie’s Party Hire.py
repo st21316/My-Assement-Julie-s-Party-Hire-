@@ -5,7 +5,7 @@ from tkinter.font import Font
 
 count=0
 name_count=0
-    
+
 #Check to see if information are entered and enter correctly
 def validate():
     #Check that all Entry Box are enter, set error text if leave blank
@@ -43,7 +43,8 @@ def validate():
             n_error['text']="Please type in number between 1-500 only."
     #Check if all infromation are enter correctly, if yes tell user to click print
     if c_error['text']=='' and i_error['text']=='' and r_error['text']=='' and n_error['text']=='':
-        I_correct['text']="All informations are corect. Click 'Print' to update list."        
+        I_correct['text']="   All informations are corect. Click 'Print' to update list."
+        P_error['text']=""
 
 #Quit subroutine
 def quit():
@@ -54,30 +55,36 @@ def print():
     global count
     global name_count
     global check_input
-    if len(customer_name_entry.get())==0 and len(item_hired_entry.get())==0 and len(receipt_number_entry.get())==0 and len(number_hired_entry.get())==0:
+    if len(customer_name_entry.get())==0 or len(item_hired_entry.get())==0 or len(receipt_number_entry.get())==0 or len(number_hired_entry.get())==0 or len(number_hired_entry.get()) < 1 or len(number_hired_entry.get()) > 500:
         P_error['text']="Please Validate your input before click 'Print'"
-    else:
-        my_tree.insert(parent='', index='end', iid=count, text=name_count,
+    elif (number_hired_entry.get().isdigit()):
+        if int(number_hired_entry.get()) < 1 or int(number_hired_entry.get()) > 500:
+            n_error['text']="Please type in number between 1-500 only."
+
+        else:
+            my_tree.insert(parent='', index='end', iid=count, text=name_count,
                values=(customer_name_entry.get(), receipt_number_entry.get(),
                        number_hired_entry.get(), item_hired_entry.get()))
-        count +=1
-        name_count +=1
-        customer_name_entry.delete(0,END)
-        receipt_number_entry.delete(0,END)
-        number_hired_entry.delete(0,END)
-        item_hired_entry.delete(0,END)
-        c_error['text']=""
-        r_error['text']=""
-        n_error['text']=""
-        i_error['text']=""
-        I_correct['text']=""
+            count +=1
+            name_count +=1
+            customer_name_entry.delete(0,END)
+            receipt_number_entry.delete(0,END)
+            number_hired_entry.delete(0,END)
+            item_hired_entry.delete(0,END)
+            c_error['text']=""
+            r_error['text']=""
+            n_error['text']=""
+            i_error['text']=""
+            I_correct['text']=""
+            P_error['text']=""
+    
+
 
 #Function for when deleting one item
 def delete_one():
     x = my_tree.selection()[0]
     my_tree.delete(x)
-     
-
+    
 #Function for when deleting several item 
 def delete_several():
     x = my_tree.selection()
@@ -218,11 +225,11 @@ c_error.grid(row=2, column=3, ipadx=5, sticky=W)
 r_error.grid(row=3, column=3, ipadx=5, sticky=W)
 i_error.grid(row=5, column=3, ipadx=5, sticky=W)
 I_correct.grid(row=7, column=1, ipadx=5, sticky=W)
-P_correct.grid(row=7, column=1, ipadx=5, sticky=W)
+P_error.grid(row=7, column=1, ipadx=5, sticky=W)
 n_error.grid(row=4, column=3, ipadx=5, sticky=W)
 #Position of Entry Box
 customer_name_entry.grid(row=2, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
-receipt_number_entry.grid(row=3, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
+receipt_number_entry.grid(row=3, column=1, ipady=4, pady=8, ipadx=4, sticky=W)
 item_hired_entry.grid(row=5, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
 number_hired_entry.grid(row=4, column=1, ipady=4, ipadx=4, sticky=W)
 #Position of Button
