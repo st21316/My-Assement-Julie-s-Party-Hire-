@@ -131,6 +131,10 @@ main_window = Tk()
 main_window.title(" Julia's Party Hire ")
 main_window.geometry('800x550')
 
+path = r'E:\Document\DGT\Programming\My-Assement-Julie-s-Party-Hire-\image.png'
+bg = PhotoImage(file=path)
+my_label = Label(main_window, image=bg)
+my_label.grid(rowspan=20, columnspan=10)
 
 
 #Creating a font-style for text in Button
@@ -224,8 +228,8 @@ number_hired_label.grid(row=4, column=0, ipadx=5, ipady=5, sticky=E)
 c_error.grid(row=2, column=3, ipadx=5, sticky=W)
 r_error.grid(row=3, column=3, ipadx=5, sticky=W)
 i_error.grid(row=5, column=3, ipadx=5, sticky=W)
-I_correct.grid(row=7, column=1, ipadx=5, sticky=W)
-P_error.grid(row=7, column=1, ipadx=5, sticky=W)
+I_correct.grid(row=7, column=1, ipadx=5, pady=0, sticky=W)
+P_error.grid(row=7, column=1, ipadx=5, pady=0, sticky=W)
 n_error.grid(row=4, column=3, ipadx=5, sticky=W)
 #Position of Entry Box
 customer_name_entry.grid(row=2, column=1, ipady=4, pady=9, ipadx=4, sticky=W)
@@ -239,7 +243,7 @@ quit.grid(row=0, column=0, ipady=5, pady=10, padx=50, sticky=E)
 print.grid(row=11, column=3, ipadx=5, ipady=2, pady=10, padx=10, sticky=W)
 validate.grid(row=10, column=3, ipadx=5, ipady=2, pady=10, padx=10, sticky=W)
 #Position of Treeview
-my_tree.grid(row=9, columnspan=2, rowspan=5, padx=25, pady=10, ipady=5, sticky=W)
+my_tree.grid(row=9, columnspan=2, rowspan=5, padx=25, pady=0, ipady=5, sticky=W)
 
 
 main_window.mainloop()
